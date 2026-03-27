@@ -48,7 +48,7 @@ export default async function Home() {
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#fdfaf6] border border-[#d4c5b9] shadow-sm mb-8 text-[#8B5A2B] font-medium text-sm">
             <Coffee size={16} />
-            <span>Dokumentasi Resmi Rutinan Tahunan</span>
+            <span>Dokumentasi Ngopi Bareng Kami</span>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold text-[#4A3728] tracking-tight mb-6">
@@ -56,14 +56,14 @@ export default async function Home() {
           </h1>
 
           <p className="text-lg md:text-xl text-[#6b5847] leading-relaxed mb-12 max-w-2xl mx-auto">
-            Merawat ukhuwah islamiyah melalui hangatnya secangkir kopi dan majelis ilmu yang penuh keberkahan. Kumpulan dokumentasi dari setiap pertemuan rutin tahunan kami.
+            Merawat ukhuwah islamiyah melalui hangatnya secangkir kopi. Kepada Kopi: Kami mengimani bahwa secangkir kopi mampu menaklukkan sepi yang meraung dalam ruang hati paling sembunyi.
           </p>
 
           <a
             href="#dokumentasi"
             className="inline-flex items-center gap-2 bg-[#4A3728] hover:bg-[#3e2723] text-white px-8 py-4 rounded-full font-medium shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1"
           >
-            Lihat Dokumentasi Terbaru
+            Lihat Dokumentasi
             <ChevronDown size={20} className="animate-bounce" />
           </a>
         </div>
