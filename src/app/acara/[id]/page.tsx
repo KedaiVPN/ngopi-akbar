@@ -13,15 +13,20 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 async function getAcaraDetail(id: string) {
-  const dataAcara = await db.select().from(acara).where(eq(acara.id, id)).get();
+  try {
+    const dataAcara = await db.select().from(acara).where(eq(acara.id, id)).get();
 
-  if (!dataAcara) {
-    return null;
+    if (!dataAcara) {
+      return null;
+    }
+
+    const dataPeserta = await db.select().from(peserta).where(eq(peserta.acaraId, id));
+
+    return { ...dataAcara, peserta: dataPeserta };
+  } catch (error) {
+    console.error("Database Error (getAcaraDetail):", error);
+    return null; // Return null so it triggers notFound() cleanly
   }
-
-  const dataPeserta = await db.select().from(peserta).where(eq(peserta.acaraId, id));
-
-  return { ...dataAcara, peserta: dataPeserta };
 }
 
 export default async function DetailAcara({ params }: { params: Promise<{ id: string }> }) {

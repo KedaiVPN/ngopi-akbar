@@ -11,20 +11,25 @@ import { id as localeId } from "date-fns/locale";
 import DeleteButton from "@/components/admin/DeleteButton";
 
 async function getAcaraList() {
-  const result = await db
-    .select({
-      id: acara.id,
-      judul: acara.judul,
-      tanggal: acara.tanggal,
-      coverUrl: acara.coverUrl,
-      pesertaCount: sql<number>`count(${peserta.id})`.mapWith(Number),
-    })
-    .from(acara)
-    .leftJoin(peserta, eq(acara.id, peserta.acaraId))
-    .groupBy(acara.id)
-    .orderBy(desc(acara.tanggal));
+  try {
+    const result = await db
+      .select({
+        id: acara.id,
+        judul: acara.judul,
+        tanggal: acara.tanggal,
+        coverUrl: acara.coverUrl,
+        pesertaCount: sql<number>`count(${peserta.id})`.mapWith(Number),
+      })
+      .from(acara)
+      .leftJoin(peserta, eq(acara.id, peserta.acaraId))
+      .groupBy(acara.id)
+      .orderBy(desc(acara.tanggal));
 
-  return result;
+    return result;
+  } catch (error) {
+    console.error("Database Error (getAcaraList):", error);
+    return [];
+  }
 }
 
 export default async function AdminDashboard() {

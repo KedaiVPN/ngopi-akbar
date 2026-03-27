@@ -9,21 +9,27 @@ import { desc, eq, sql } from "drizzle-orm";
 import { Coffee, ChevronDown, Image as ImageIcon } from "lucide-react";
 
 async function getRecentAcara() {
-  const result = await db
-    .select({
-      id: acara.id,
-      judul: acara.judul,
-      tanggal: acara.tanggal,
-      coverUrl: acara.coverUrl,
-      kontenHtml: acara.kontenHtml,
-      pesertaCount: sql<number>`count(${peserta.id})`.mapWith(Number),
-    })
-    .from(acara)
-    .leftJoin(peserta, eq(acara.id, peserta.acaraId))
-    .groupBy(acara.id)
-    .orderBy(desc(acara.tanggal));
+  try {
+    const result = await db
+      .select({
+        id: acara.id,
+        judul: acara.judul,
+        tanggal: acara.tanggal,
+        coverUrl: acara.coverUrl,
+        kontenHtml: acara.kontenHtml,
+        pesertaCount: sql<number>`count(${peserta.id})`.mapWith(Number),
+      })
+      .from(acara)
+      .leftJoin(peserta, eq(acara.id, peserta.acaraId))
+      .groupBy(acara.id)
+      .orderBy(desc(acara.tanggal));
 
-  return result;
+    return result;
+  } catch (error) {
+    console.error("Database Error (getRecentAcara):", error);
+    // Return empty array if table doesn't exist or connection fails
+    return [];
+  }
 }
 
 export default async function Home() {
