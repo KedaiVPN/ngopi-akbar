@@ -171,7 +171,7 @@ export default function EditAcara({ params }: { params: Promise<{ id: string }> 
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
                   if (res && res[0]) {
-                    setCoverUrl(res[0].url);
+                    setCoverUrl(res[0].serverData?.ufsUrl || res[0].url);
                   }
                 }}
                 onUploadError={(error: Error) => {
