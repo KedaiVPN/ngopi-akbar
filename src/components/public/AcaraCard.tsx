@@ -47,7 +47,7 @@ export default function AcaraCard({ id, judul, coverUrl, tanggal, pesertaCount, 
           </div>
           <div className="flex items-center gap-1.5 bg-[#8B5A2B]/90 backdrop-blur-sm text-[#fdfaf6] px-3 py-1.5 rounded-full text-xs font-medium shadow-sm border border-white/10">
             <Users size={14} />
-            {pesertaCount} Hadir
+            {pesertaCount} Hadirin
           </div>
         </div>
       </div>
