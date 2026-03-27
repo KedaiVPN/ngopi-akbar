@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NGOPI AKBAR - Dokumentasi Acara Rutinan",
-  description: "Dokumentasi acara rutinan tahunan Ngopi dan Silaturahmi.",
+  title: "KANG NGOPI - Dokumentasi ngopi bareng kami",
+  description: "Tiap kopi yang tertuang, Selalu menyisakan kenang yang kembali datang.",
 };
 
 export default function RootLayout({
