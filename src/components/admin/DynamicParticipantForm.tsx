@@ -44,7 +44,7 @@ export default function DynamicParticipantForm({ participants, onChange }: Dynam
           <p className="text-[#8B5A2B] text-sm">Belum ada peserta yang ditambahkan.</p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-3 max-h-[360px] overflow-y-auto pr-2 custom-scrollbar">
           {participants.map((participant, index) => (
             <div key={index} className="flex items-center gap-2">
               <span className="w-8 text-center text-sm text-[#8B5A2B] font-medium">{index + 1}.</span>
