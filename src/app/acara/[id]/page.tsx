@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { acara, peserta } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale";
 import { Calendar, Users, ChevronLeft, UserCheck } from "lucide-react";
@@ -54,11 +55,21 @@ export default async function DetailAcara({ params }: { params: Promise<{ id: st
         <article className="bg-white rounded-3xl border border-[#eaddd1] shadow-lg overflow-hidden">
           {/* Cover Image */}
           <div className="relative w-full h-80 md:h-[500px] overflow-hidden">
+            {/* Next.js Image Component (Crashed in Production)*/}
+            <Image
+              src={data.coverUrl}
+              alt={data.judul}
+              fill
+              className="object-cover"
+              priority
+              unoptimized={true}
+            />
+            {/*
             <img
               src={data.coverUrl}
               alt={data.judul}
               className="absolute inset-0 w-full h-full object-cover"
-            />
+            />*/}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
             <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
