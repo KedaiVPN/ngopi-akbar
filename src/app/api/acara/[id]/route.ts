@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/db';
-import { acara, peserta } from '@/db/schema';
+import { acara, peserta, galeri } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 
@@ -17,8 +17,9 @@ export async function GET(
     }
 
     const dataPeserta = await db.select().from(peserta).where(eq(peserta.acaraId, id));
+    const dataGaleri = await db.select().from(galeri).where(eq(galeri.acaraId, id));
 
-    return NextResponse.json({ ...dataAcara, peserta: dataPeserta });
+    return NextResponse.json({ ...dataAcara, peserta: dataPeserta, galeri: dataGaleri });
   } catch (error) {
     return NextResponse.json({ error: 'Gagal mengambil data acara' }, { status: 500 });
   }
@@ -40,7 +41,7 @@ export async function PUT(
 
     const { id } = await context.params;
     const body = await request.json();
-    const { judul, coverUrl, kontenHtml, tanggal, daftarPeserta } = body;
+    const { judul, coverUrl, kontenHtml, tanggal, daftarPeserta, galeriUrls } = body;
 
     // Update acara
     await db.update(acara).set({
@@ -60,6 +61,18 @@ export async function PUT(
         acaraId: id,
       }));
       await db.insert(peserta).values(pesertaValues);
+    }
+
+    // Update galeri
+    await db.delete(galeri).where(eq(galeri.acaraId, id));
+
+    if (galeriUrls && galeriUrls.length > 0) {
+      const galeriValues = galeriUrls.map((url: string) => ({
+        id: nanoid(),
+        url,
+        acaraId: id,
+      }));
+      await db.insert(galeri).values(galeriValues);
     }
 
     return NextResponse.json({ message: 'Acara berhasil diupdate' });

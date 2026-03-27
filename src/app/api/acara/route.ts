@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/db';
-import { acara, peserta } from '@/db/schema';
+import { acara, peserta, galeri } from '@/db/schema';
 import { nanoid } from 'nanoid';
 import { desc, eq } from 'drizzle-orm';
 
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { judul, coverUrl, kontenHtml, tanggal, daftarPeserta } = body;
+    const { judul, coverUrl, kontenHtml, tanggal, daftarPeserta, galeriUrls } = body;
 
     const id = nanoid();
 
@@ -47,6 +47,16 @@ export async function POST(request: Request) {
         acaraId: id,
       }));
       await db.insert(peserta).values(pesertaValues);
+    }
+
+    // Insert galeri
+    if (galeriUrls && galeriUrls.length > 0) {
+      const galeriValues = galeriUrls.map((url: string) => ({
+        id: nanoid(),
+        url,
+        acaraId: id,
+      }));
+      await db.insert(galeri).values(galeriValues);
     }
 
     return NextResponse.json({ id, message: 'Acara berhasil dibuat' });
