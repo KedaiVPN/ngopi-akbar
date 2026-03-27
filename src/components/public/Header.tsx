@@ -11,7 +11,7 @@ export default function Header() {
               <Coffee size={24} />
             </div>
             <span className="font-bold text-xl tracking-wider text-[#4A3728] group-hover:text-[#8B5A2B] transition-colors">
-              NGOPI AKBAR
+             KANG NGOPI
             </span>
           </Link>
         </div>
