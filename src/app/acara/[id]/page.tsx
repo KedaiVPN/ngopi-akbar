@@ -61,6 +61,7 @@ export default async function DetailAcara({ params }: { params: Promise<{ id: st
               fill
               className="object-cover"
               priority
+              unoptimized={true}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 

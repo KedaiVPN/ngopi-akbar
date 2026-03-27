@@ -3,8 +3,17 @@ import { UploadThingError } from "uploadthing/server";
 
 const f = createUploadthing();
 
-// Fake auth function
-const auth = (req: Request) => ({ id: "fakeId" }); // Whatever is returned here is accessible in onUploadComplete as `metadata`
+// Auth function checking cookies
+import { cookies } from 'next/headers';
+
+const auth = async () => {
+  const cookieStore = await cookies();
+  const session = cookieStore.get('admin_session');
+  if (session?.value === 'authenticated') {
+    return { id: "admin" };
+  }
+  return null;
+};
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
@@ -13,7 +22,7 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
       // This code runs on your server before upload
-      const user = await auth(req);
+      const user = await auth();
 
       // If you throw, the user will not be able to upload
       if (!user) throw new UploadThingError("Unauthorized");

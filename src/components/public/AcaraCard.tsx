@@ -29,6 +29,7 @@ export default function AcaraCard({ id, judul, coverUrl, tanggal, pesertaCount, 
           alt={judul}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
+          unoptimized={true}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
         <div className="absolute bottom-4 left-4 flex gap-3">

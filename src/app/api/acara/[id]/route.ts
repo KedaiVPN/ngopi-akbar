@@ -24,11 +24,20 @@ export async function GET(
   }
 }
 
+import { cookies } from 'next/headers';
+
 export async function PUT(
   request: Request,
   context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get('admin_session');
+
+    if (!sessionCookie || sessionCookie.value !== 'authenticated') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { id } = await context.params;
     const body = await request.json();
     const { judul, coverUrl, kontenHtml, tanggal, daftarPeserta } = body;
@@ -65,6 +74,13 @@ export async function DELETE(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get('admin_session');
+
+    if (!sessionCookie || sessionCookie.value !== 'authenticated') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { id } = await context.params;
     await db.delete(acara).where(eq(acara.id, id));
     return NextResponse.json({ message: 'Acara berhasil dihapus' });

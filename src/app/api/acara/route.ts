@@ -13,8 +13,17 @@ export async function GET() {
   }
 }
 
+import { cookies } from 'next/headers';
+
 export async function POST(request: Request) {
   try {
+    const cookieStore = await cookies();
+    const sessionCookie = cookieStore.get('admin_session');
+
+    if (!sessionCookie || sessionCookie.value !== 'authenticated') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const body = await request.json();
     const { judul, coverUrl, kontenHtml, tanggal, daftarPeserta } = body;
 
