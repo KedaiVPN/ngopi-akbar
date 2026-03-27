@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale";
 import { Calendar, Users, ChevronRight } from "lucide-react";
@@ -23,11 +24,21 @@ export default function AcaraCard({ id, judul, coverUrl, tanggal, pesertaCount, 
       className="group block bg-white rounded-2xl border border-[#eaddd1] shadow-sm hover:shadow-xl hover:border-[#8B5A2B]/40 transition-all duration-300 overflow-hidden transform hover:-translate-y-1"
     >
       <div className="relative h-64 w-full overflow-hidden">
+        {/* Next.js Image Component (Crashed in Production)*/}
+        <Image
+          src={coverUrl}
+          alt={judul}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          unoptimized={true}
+        />
+        {/*
         <img
           src={coverUrl}
           alt={judul}
           className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
+        */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
         <div className="absolute bottom-4 left-4 flex gap-3">
           <div className="flex items-center gap-1.5 bg-[#4A3728]/80 backdrop-blur-sm text-[#fdfaf6] px-3 py-1.5 rounded-full text-xs font-medium shadow-sm border border-white/10">
