@@ -74,8 +74,8 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-12">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#4A3728] mb-3">Jejak Silaturahmi</h2>
-              <p className="text-[#8B5A2B] font-medium">Rekam jejak setiap acara Ngopi Akbar yang telah berlalu.</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#4A3728] mb-3">Ngopi Ngopi</h2>
+              <p className="text-[#8B5A2B] font-medium">Rekam jejak ngopi bareng kami.</p>
             </div>
             <div className="hidden md:flex items-center justify-center w-16 h-16 bg-[#fdfaf6] rounded-full border border-[#d4c5b9] shadow-inner">
               <ImageIcon size={28} className="text-[#8B5A2B]" />
