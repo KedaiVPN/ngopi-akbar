@@ -10,7 +10,7 @@ import { id as localeId } from "date-fns/locale";
 import { Calendar, Users, ChevronLeft, UserCheck } from "lucide-react";
 import Link from "next/link";
 
-export const revalidate = 60; // Revalidate every minute
+export const dynamic = "force-dynamic";
 
 async function getAcaraDetail(id: string) {
   const dataAcara = await db.select().from(acara).where(eq(acara.id, id)).get();

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Plus, Edit, Trash2, Calendar, Users, FileText } from "lucide-react";
+export const dynamic = "force-dynamic";
+
 import { db } from "@/db";
 import { acara, peserta } from "@/db/schema";
 import { desc, eq, sql } from "drizzle-orm";
