@@ -9,11 +9,11 @@ export default function Footer() {
           <span className="font-bold text-2xl tracking-widest text-[#fdfaf6]">NGOPI AKBAR</span>
         </div>
         <p className="max-w-md mx-auto mb-8 text-[#d4c5b9] leading-relaxed">
-          Dokumentasi rutinan tahunan Ngopi dan Silaturahmi. Merajut ukhuwah melalui secangkir kopi dan untaian doa.
+          Dokumentasi Ngopi dan Silaturahmi. Merajut ukhuwah melalui secangkir kopi.
         </p>
         <div className="flex justify-center items-center gap-2 text-sm text-[#d4c5b9] border-t border-[#8B5A2B]/30 pt-8">
           <span>&copy; {new Date().getFullYear()} Ngopi Akbar.</span>
-          <span className="flex items-center gap-1">Dibuat dengan <Heart size={14} className="text-red-400 fill-current" /> dan seduhan kopi.</span>
+          <span className="flex items-center gap-1">Dibuat dengan dan seduhan kopi <Coffee size={14} className="text-[#8B5A2B] fill-current" />.</span>
         </div>
       </div>
     </footer>
