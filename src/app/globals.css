@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --background: #fdfaf6;
+  --foreground: #4A3728;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom styles for Tiptap Editor & Arabic text */
+.ProseMirror {
+  outline: none !important;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Support for mixed LTR/RTL content */
+.arabic-support {
+  direction: auto;
+}
+
+.arabic-support p,
+.arabic-support h1,
+.arabic-support h2,
+.arabic-support h3,
+.tiptap-content p,
+.tiptap-content h1,
+.tiptap-content h2,
+.tiptap-content h3 {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+/* Custom prose styles for the coffee theme */
+.prose-stone {
+  --tw-prose-body: #6b5847;
+  --tw-prose-headings: #4A3728;
+  --tw-prose-lead: #8B5A2B;
+  --tw-prose-links: #8B5A2B;
+  --tw-prose-bold: #4A3728;
+  --tw-prose-counters: #8B5A2B;
+  --tw-prose-bullets: #8B5A2B;
+  --tw-prose-hr: #eaddd1;
+  --tw-prose-quotes: #4A3728;
+  --tw-prose-quote-borders: #d4c5b9;
+  --tw-prose-captions: #8B5A2B;
+  --tw-prose-code: #4A3728;
+  --tw-prose-pre-code: #eaddd1;
+  --tw-prose-pre-bg: #4A3728;
+  --tw-prose-th-borders: #d4c5b9;
+  --tw-prose-td-borders: #eaddd1;
+}
