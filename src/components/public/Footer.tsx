@@ -13,7 +13,7 @@ export default function Footer() {
         </p>
         <div className="flex justify-center items-center gap-2 text-sm text-[#d4c5b9] border-t border-[#8B5A2B]/30 pt-8">
           <span>&copy; {new Date().getFullYear()} Ngopi Akbar.</span>
-          <span className="flex items-center gap-1">Dibuat dengan dan seduhan kopi <Coffee size={14} className="text-[#8B5A2B] fill-current" />.</span>
+          <span className="flex items-center gap-1">Dibuat dengan seduhan kopi <Coffee size={14} className="text-[#8B5A2B] fill-current" /></span>
         </div>
       </div>
     </footer>
