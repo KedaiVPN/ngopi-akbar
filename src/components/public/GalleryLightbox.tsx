@@ -73,7 +73,7 @@ export default function GalleryLightbox({ images }: { images: string[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar mb-8">
         {images.map((src, index) => (
           <div
             key={index}
