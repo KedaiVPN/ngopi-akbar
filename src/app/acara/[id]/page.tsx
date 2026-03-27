@@ -107,7 +107,7 @@ export default async function DetailAcara({ params }: { params: Promise<{ id: st
                   <UserCheck size={28} />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-[#4A3728]">Daftar Peserta</h2>
+                  <h2 className="text-2xl font-bold text-[#4A3728]">Daftar Hadirin</h2>
                   <p className="text-[#8B5A2B] text-sm">Yang turut serta meramaikan acara</p>
                 </div>
               </div>
