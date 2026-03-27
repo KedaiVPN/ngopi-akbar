@@ -80,7 +80,7 @@ export default async function DetailAcara({ params }: { params: Promise<{ id: st
                 </div>
                 <div className="inline-flex items-center gap-2 bg-[#8B5A2B]/80 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-semibold shadow-sm border border-white/20">
                   <Users size={16} />
-                  {data.peserta.length} Peserta Hadir
+                  {data.peserta.length} Hadirin
                 </div>
               </div>
               <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-2 drop-shadow-md">
