@@ -1,14 +1,15 @@
 import Header from "@/components/public/Header";
 import Footer from "@/components/public/Footer";
 import { db } from "@/db";
-import { acara, peserta } from "@/db/schema";
+import { acara, peserta, galeri } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { format } from "date-fns";
 import { id as localeId } from "date-fns/locale";
-import { Calendar, Users, ChevronLeft, UserCheck } from "lucide-react";
+import { Calendar, Users, ChevronLeft, UserCheck, ImageIcon } from "lucide-react";
 import Link from "next/link";
+import GalleryLightbox from "@/components/public/GalleryLightbox";
 
 export const dynamic = "force-dynamic";
 
@@ -21,8 +22,9 @@ async function getAcaraDetail(id: string) {
     }
 
     const dataPeserta = await db.select().from(peserta).where(eq(peserta.acaraId, id));
+    const dataGaleri = await db.select().from(galeri).where(eq(galeri.acaraId, id));
 
-    return { ...dataAcara, peserta: dataPeserta };
+    return { ...dataAcara, peserta: dataPeserta, galeri: dataGaleri };
   } catch (error) {
     console.error("Database Error (getAcaraDetail):", error);
     return null; // Return null so it triggers notFound() cleanly
@@ -98,6 +100,22 @@ export default async function DetailAcara({ params }: { params: Promise<{ id: st
               />
             </div>
           </div>
+
+          {/* Galeri */}
+          {data.galeri && data.galeri.length > 0 && (
+            <div className="border-t border-[#eaddd1] bg-white p-8 md:p-12">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="p-3 bg-[#eaddd1] rounded-xl text-[#8B5A2B]">
+                  <ImageIcon size={28} />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-[#4A3728]">Galeri Acara</h2>
+                  <p className="text-[#8B5A2B] text-sm">Dokumentasi momen-momen berkesan</p>
+                </div>
+              </div>
+              <GalleryLightbox images={data.galeri.map(g => g.url)} />
+            </div>
+          )}
 
           {/* Daftar Peserta */}
           {data.peserta.length > 0 && (

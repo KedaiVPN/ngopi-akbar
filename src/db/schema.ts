@@ -14,3 +14,9 @@ export const peserta = sqliteTable('peserta', {
   nama: text('nama').notNull(),
   acaraId: text('acara_id').notNull().references(() => acara.id, { onDelete: 'cascade' }),
 });
+
+export const galeri = sqliteTable('galeri', {
+  id: text('id').primaryKey(), // using nanoid
+  url: text('url').notNull(),
+  acaraId: text('acara_id').notNull().references(() => acara.id, { onDelete: 'cascade' }),
+});
