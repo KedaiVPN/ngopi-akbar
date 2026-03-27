@@ -110,7 +110,6 @@ export default async function DetailAcara({ params }: { params: Promise<{ id: st
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold text-[#4A3728]">Galeri Acara</h2>
-                  <p className="text-[#8B5A2B] text-sm">Dokumentasi momen-momen berkesan</p>
                 </div>
               </div>
               <GalleryLightbox images={data.galeri.map(g => g.url)} />
